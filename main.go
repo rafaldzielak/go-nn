@@ -25,6 +25,20 @@ func circleArea(r float64) float64 {
 	return math.Pi * r * r
 }
 
+func getInitials(n string) (string, string) {
+	s := strings.ToUpper(n)
+	names := strings.Split(s, " ")
+	var initials []string
+	for _, value := range names {
+		initials = append(initials, value[:1])
+	}
+	// fmt.Println(initials, len(initials))
+	if (len(initials)) > 1 {
+		return initials[0], initials[1]
+	}
+	return initials[0], "_"
+}
+
 // Does not work outside functions:
 // someName := "hello"
 
@@ -167,6 +181,9 @@ func main() {
 
 	a1 := circleArea(4)
 	a2 := circleArea(5)
-	fmt.Printf("circle 1 is %0.3f and circle 2 is %0.3f", a1, a2)
+	fmt.Printf("circle 1 is %0.3f and circle 2 is %0.3f\n", a1, a2)
+
+	initialOne, initialTwo := getInitials("Rafa Dyrek")
+	fmt.Println(initialOne, initialTwo)
 
 }
