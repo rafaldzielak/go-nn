@@ -7,14 +7,6 @@ import (
 	"strings"
 )
 
-func sayGreeting(n string) {
-	fmt.Printf("Good morning %v\n", n)
-}
-
-func sayBye(n string) {
-	fmt.Printf("Bye %v\n", n)
-}
-
 func cycleNames(n []string, f func(string)) {
 	for _, value := range n {
 		f(value)
@@ -24,6 +16,8 @@ func cycleNames(n []string, f func(string)) {
 func circleArea(r float64) float64 {
 	return math.Pi * r * r
 }
+
+var score = 99.5
 
 func getInitials(n string) (string, string) {
 	s := strings.ToUpper(n)
@@ -185,5 +179,11 @@ func main() {
 
 	initialOne, initialTwo := getInitials("Rafa Dyrek")
 	fmt.Println(initialOne, initialTwo)
+
+	for _, v := range points {
+		fmt.Println(v)
+	}
+
+	showScore()
 
 }
