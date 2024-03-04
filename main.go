@@ -68,4 +68,6 @@ func main() {
 
 	showScore()
 
+	maps()
+
 }
