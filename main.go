@@ -70,4 +70,6 @@ func main() {
 
 	maps()
 
+	passByValue()
+
 }
