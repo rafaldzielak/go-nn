@@ -7,6 +7,7 @@ import (
 )
 
 // Gophercises
+// go run main.go greetings.go conditionals.go arraysSlices.go loops.go standardLibrary.go types.go maps.go passByValue.go pointers.go
 
 func cycleNames(n []string, f func(string)) {
 	for _, value := range n {
@@ -69,7 +70,7 @@ func main() {
 	showScore()
 
 	maps()
-
 	passByValue()
+	pointers()
 
 }
