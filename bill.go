@@ -8,8 +8,6 @@ type bill struct {
 	tip   float64
 }
 
-// make a new bill
-
 func newBill(name string) bill {
 	b := bill{
 		name:  name,
@@ -19,10 +17,25 @@ func newBill(name string) bill {
 	return b
 }
 
+// Receiver function - receives a COPY of the bill
+func (b bill) format() string {
+	fs := "Bill breakdown:\n"
+	var total float64 = 0
+	for k, v := range b.items {
+		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v) //first one takes 25 characters
+		total += v
+	}
+
+	fs += fmt.Sprintf("%-25v ...$%0.2f", "total:", total)
+	return fs
+}
+
 func structs() {
-	b := newBill("rafa")
-	b.items["pie"] = 5.99
-	b.items["cake"] = 3.99
-	b.tip = 2.5
-	fmt.Println(b)
+	fmt.Println("STRUCTS:")
+	myBill := newBill("rafa")
+	myBill.items["pie"] = 5.99
+	myBill.items["cake"] = 3.99
+	myBill.tip = 2.5
+	fmt.Println(myBill)
+	fmt.Println(myBill.format())
 }
