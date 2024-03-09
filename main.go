@@ -73,4 +73,6 @@ func main() {
 	passByValue()
 	pointers()
 
+	structs()
+
 }
