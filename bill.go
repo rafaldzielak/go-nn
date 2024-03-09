@@ -18,24 +18,34 @@ func newBill(name string) bill {
 }
 
 // Receiver function - receives a COPY of the bill
-func (b bill) format() string {
+func (b *bill) format() string {
 	fs := "Bill breakdown:\n"
 	var total float64 = 0
 	for k, v := range b.items {
 		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v) //first one takes 25 characters
 		total += v
 	}
+	fs += fmt.Sprintf("%-25v ...$%v\n", "tip:", b.tip)
 
-	fs += fmt.Sprintf("%-25v ...$%0.2f", "total:", total)
+	fs += fmt.Sprintf("%-25v ...$%0.2f", "total:", total+b.tip)
 	return fs
+}
+
+func (b *bill) updateTip(tip float64) {
+	b.tip = tip //we don't need to dereference here (*b)
+}
+
+func (b *bill) addItem(name string, price float64) {
+	b.items[name] = price
+
 }
 
 func structs() {
 	fmt.Println("STRUCTS:")
 	myBill := newBill("rafa")
-	myBill.items["pie"] = 5.99
-	myBill.items["cake"] = 3.99
-	myBill.tip = 2.5
+	myBill.addItem("pie", 5.99)
+	myBill.addItem("cake", 3.99)
+	myBill.updateTip(2.5)
 	fmt.Println(myBill)
 	fmt.Println(myBill.format())
 }
