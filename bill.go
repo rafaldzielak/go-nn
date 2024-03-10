@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 type bill struct {
 	name  string
@@ -48,4 +53,21 @@ func structs() {
 	myBill.updateTip(2.5)
 	fmt.Println(myBill)
 	fmt.Println(myBill.format())
+}
+
+func promptOptions(b bill) {
+	reader := bufio.NewReader(os.Stdin)
+	option, _ := getInput("Choose option (a - add item, s - save the bill, t = add tip) ", reader)
+	fmt.Println(option)
+
+}
+
+func createBill() bill {
+	reader := bufio.NewReader(os.Stdin)
+	name, _ := getInput("Create a new bill name: ", reader)
+
+	name = strings.TrimSpace(name)
+	b := newBill(name)
+	fmt.Println("Created the bill - ", b.name)
+	return b
 }

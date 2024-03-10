@@ -75,4 +75,8 @@ func main() {
 
 	structs()
 
+	fmt.Println("\nDEMO APP:")
+	myBill := createBill()
+	fmt.Println(myBill)
+	promptOptions(myBill)
 }
