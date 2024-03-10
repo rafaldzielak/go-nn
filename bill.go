@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -42,7 +43,6 @@ func (b *bill) updateTip(tip float64) {
 
 func (b *bill) addItem(name string, price float64) {
 	b.items[name] = price
-
 }
 
 func structs() {
@@ -65,14 +65,29 @@ func promptOptions(b bill) {
 		fmt.Println("you chose a")
 		name, _ := getInput("Item name: ", reader)
 		price, _ := getInput("Item price: ", reader)
-		fmt.Println(name, price)
+		p, err := strconv.ParseFloat(price, 64)
+		if err != nil {
+			fmt.Println("The price must be a number")
+			promptOptions(b)
+		}
+		b.addItem(name, p)
+		fmt.Println("Item added - ", name, price)
+		promptOptions(b)
+
 	case "t":
 		fmt.Println("you chose t")
 		tip, _ := getInput("Tip amount: ", reader)
-		fmt.Println(tip)
+		t, err := strconv.ParseFloat(tip, 64)
+		if err != nil {
+			fmt.Println("The tip must be a number")
+			promptOptions(b)
+		}
+		b.updateTip(t)
+		fmt.Println("Tip added - ", t)
+		promptOptions(b)
 
 	case "s":
-		fmt.Println("you chose s")
+		fmt.Println("you chose to save the bill", b.format())
 	default:
 		fmt.Println("that was not a valid option...")
 		promptOptions(b)
