@@ -79,4 +79,6 @@ func main() {
 	myBill := createBill()
 	fmt.Println(myBill)
 	promptOptions(myBill)
+
+	interfaces()
 }
